@@ -78,15 +78,21 @@ setup:
 	$(PIP) install -r requirements.txt
 
 # Each case generates its own seeded synthetic data (planted effect, mirrors
-# its _source case's schema) via src/causal_toolkit. Scripts land per-case
-# under cases/0N_*/ as each case is implemented.
+# its _source case's schema) via src/causal_toolkit. Each case's module has a
+# __main__ that writes to data/<case>/; extend this list as cases are added.
 data:
-	$(PYTHON) -m causal_toolkit.generate_all --out data/
+	PYTHONPATH=src $(PYTHON) -m causal_toolkit.ab
 
 # Executes every case notebook top to bottom so results in reports/figures/
-# always come from code that actually ran.
+# always come from code that actually ran. Registers a project-local Jupyter
+# kernel pointed at .venv first, since nbconvert's default "python3" kernel
+# otherwise resolves to whatever Python is registered system-wide, not the venv.
+KERNEL_NAME := experimentation-causal-impact
 notebooks:
-	$(PYTHON) -m jupyter nbconvert --to notebook --execute --inplace cases/*/*.ipynb
+	$(PYTHON) -m ipykernel install --user --name=$(KERNEL_NAME) --display-name="$(KERNEL_NAME)" >/dev/null
+	$(PYTHON) -m jupyter nbconvert --to notebook --execute --inplace \
+		--ExecutePreprocessor.kernel_name=$(KERNEL_NAME) \
+		cases/*/*.ipynb
 
 test:
 	$(PYTHON) -m pytest tests/ -v
