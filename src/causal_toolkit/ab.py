@@ -1,9 +1,8 @@
 """Reusable A/B test readout functions: SRM, power, effect + CI, guardrails.
 
-Case 1 mirrors the schema and rough effect size of the C22/HW1 course case
-(an online platform's posting-activity A/B test) with seeded synthetic data
-and a planted true effect, since the source data has no redistribution
-license. See ../../.ai/PROJECT_SPEC.md.
+Case 1 mirrors a posting-activity A/B test schema with seeded synthetic data
+and a planted true effect, since the motivating source data has no
+redistribution license.
 """
 
 from __future__ import annotations
@@ -13,10 +12,10 @@ from pathlib import Path
 
 import numpy as np
 import pandas as pd
+import statsmodels.api as sm
 from scipy import stats
 from statsmodels.stats.power import NormalIndPower
 from statsmodels.stats.proportion import proportion_confint, proportion_effectsize
-import statsmodels.api as sm
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 DATA_DIR = PROJECT_ROOT / "data" / "case1"

@@ -13,7 +13,7 @@
 4. Guardrails — two-sample tests (continuous and binary) on post length and flag rate, each with a CI and a pass/regressed flag (`guardrail_check_continuous`, `guardrail_check_binary`).
 5. Independent cross-check of the topline and guardrail metrics in DuckDB (`sql/01_case1_metrics.sql`).
 
-Data is seeded synthetic data (`causal_toolkit.ab.generate_case1_data`, seed `20260101`) mirroring the schema and rough effect size of the C22/HW1 course case (an online platform's posting-activity A/B test), with a planted true effect — the source has no redistribution license. See `../../.ai/PROJECT_SPEC.md`.
+Data is seeded synthetic data (`causal_toolkit.ab.generate_case1_data`, seed `20260101`) mirroring the schema and rough effect size of a posting-activity A/B test, with a planted true effect. The motivating source has no redistribution license, so no source rows are included.
 
 **Result + CI.**
 

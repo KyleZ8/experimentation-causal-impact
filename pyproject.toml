@@ -8,6 +8,7 @@ ignore = ["E501"]
 
 [tool.ruff.lint.per-file-ignores]
 "cases/*/run_case.py" = ["E402"]
+"cases/**/*.ipynb" = ["E402", "I001"]
 
 [tool.pytest.ini_options]
 pythonpath = ["src"]
