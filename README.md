@@ -1,4 +1,4 @@
-# Experimentation Causal Impact
+# Experimentation & Causal Impact Casebook
 
 **A/B testing and causal inference casebook for business decisions where the naive read is wrong.**
 Check randomization → test the causal assumption → estimate the effect → make the decision.
@@ -19,7 +19,7 @@ Three common product and marketing reads look convincing at first glance:
 
 Each topline number misses the decision risk. The A/B test has regressing guardrails, the paid-search ROI counts cannibalized organic clicks as incremental, and the directed-search read is inflated by self-selection. The corrected methods change the recommendation.
 
-| Case | Question | Naive | Correct | Decision |
+| Case | Question | Topline read | Decision-grade read | Decision |
 |---|---|---:|---:|---|
 | A/B test readout | Should a posting nudge roll out to all users? | `+5.97pp` posting lift | `+5.98pp`, but post length `-10.2%` and flag rate `+1.6pp` | Do not ship as-is |
 | Difference-in-differences | Should paid search scale from observed paid-click ROI? | `320.0%` ROI | `80.0%` DiD ROI, `45.0` incremental clicks | Use corrected ROI hurdle |
@@ -115,3 +115,5 @@ tests/      pytest known-answer and diagnostics tests
 ## License
 
 MIT
+
+Part of a six-project data analytics portfolio — see [github.com/KyleZ8](https://github.com/KyleZ8)
